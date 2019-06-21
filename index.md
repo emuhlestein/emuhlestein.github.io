@@ -66,7 +66,8 @@ expect(fixture.debugElement.query(By.css('a')).nativeElement.textContent).toCont
 let deA = fixture.debugElement.query(By.css('a')); // debug element anchor tag (deA)
 expect(deA.nativeElement.textContent).toContain('SuperDude');
 
-
+// Get a handle to a service
+let svc = TestBed.get(SomeService);
 
 
 
