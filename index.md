@@ -12,6 +12,7 @@ If you are apply CSS in your inside Component css file than it will not apply on
 ### Angular Unit Tests
 #### Creating mock object with three methods
 mockHeroService = jasmine.createSpyObject(['getHeros', 'addHero', 'deleteHero'])
+component = new HerosComponent(mockHeroService)
 
 #### Add return type to method
 // Have deleteHero method return an Observable that emits true
