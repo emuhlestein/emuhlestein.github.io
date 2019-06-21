@@ -18,3 +18,29 @@ component = new HerosComponent(mockHeroService)
 // Have deleteHero method return an Observable that emits true
 
 mockHeroService.deleteHero.and.returnValue(of(true))
+
+#### Can call life cycle methods
+component.ngOnInit()
+
+component.delete(HEROES[2]); // deleting this hero should call the deleteHero method
+// on the service. Hence this next expect:
+expect(mockHeroService.deleteHero).toHaveBeenCalled();
+
+it() is a jasmine test. xit(): prepending 'it' with 'x' makes it so the test does not run.
+'x' is a note to Karma to ignore the test.
+
+// test to make sure method was called with correct parameter
+expect(mockHeroService.deleteHero).toHaveBeenCalledWith(HEREOS[2]);
+
+### Testing Tips
+1) Leave browser console open when running angular tests
+2) ng test --source-map=false // not always recommended
+
+
+
+
+
+
+
+
+
