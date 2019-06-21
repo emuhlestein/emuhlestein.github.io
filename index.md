@@ -9,7 +9,14 @@ If you are apply CSS in your inside Component css file than it will not apply on
   background-color: red !important;
 }
 
+### Angular
+
+Angular has a dependency injection registry. Any thing that is injectable is registered here.
+
 ### Angular Unit Tests
+
+
+
 #### Creating mock object with three methods
 mockHeroService = jasmine.createSpyObject(['getHeros', 'addHero', 'deleteHero'])
 component = new HerosComponent(mockHeroService)
@@ -68,6 +75,11 @@ expect(deA.nativeElement.textContent).toContain('SuperDude');
 
 // Get a handle to a service
 let svc = TestBed.get(SomeService);
+
+// When a component is constructed using the TestBed, ngOnInit will get called automatically.
+
+During unit testing, components and services should be tested separately. Therefore, when testing a component, the injected
+services should be mocked.
 
 
 
