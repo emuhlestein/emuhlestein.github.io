@@ -2,7 +2,7 @@
 title: This is my title
 layout: post
 ---
-### Hello World 
+### My Learning Blog
 
 ### Styling Primeng pTooltip
 If you are apply CSS in your inside Component css file than it will not apply on the tooltip because tooltip is added in body root path. So you have to add css in Global Css file of your project which were located in your project src > assets > css Or you can also apply in src > assets > styles.scss. Use below css: .ui-tooltip .ui-tooltip-text {
@@ -50,9 +50,19 @@ expect(mockHeroService.deleteHero).toHaveBeenCalledWith(HEREOS[2]);
 
 // create a HeroComponent and return a fixture component. This is just a wrapper around the actual component
 fixture = TestBed.createComponent(HeroComponent);
+The debug element is the rendered html.
+
+The fixture is the test environment for the component.
+
+~~~
+TestBed.configureTestingModule({
+  declarations: [ TheComponent],
+ }).compileComponent(); // compiles the html and css
+~~~
 
 // get the actual component
-component = fixture.componentInstance;
+component = fixture.componentInstance; //The actual component
+de = fixture.debugElement; // For testing the rendered html
 
 // create the hero property
 component.hero = { id: 1, name: 'SuperDude', strength: 3 };
@@ -64,6 +74,26 @@ fixture.nativeElement.querySelector('a');
 // look for string, 'SuperDude', inside anchor tag
 expect(fixture.nativeElement.querySelector('a').textContent).toContain('SuperDude'));
 
+expect(de.query(By.css('h1)).nativeElement.innerText).toBe('The String');
+
+~~~
+// To test the value of a boolean: hideContent
+it('should toggle', () => {
+  expect(component.hideContent).toBeTruthy();
+  component.toggle();
+  expect(component.hideContent).toBeFalsy();
+});
+
+// To test the value of a boolean: hideContent. The method is now asynchronous
+it('should toggle', fakeAsync(() => {
+  expect(component.hideContent).toBeTruthy();
+  component.toggleAsync();
+  tick(500); // delay of 500ms
+  expect(component.hideContent).toBeFalsy();
+}));
+~~~
+
+fakeAsync() Create a fake angular zone that we can use to test asynchronous activity.
 // nativeElement exposes the DOM API.
 
 //debugElement is a wrapper around the DOM node.
@@ -76,11 +106,32 @@ expect(deA.nativeElement.textContent).toContain('SuperDude');
 // Get a handle to a service
 let svc = TestBed.get(SomeService);
 
-// When a component is constructed using the TestBed, ngOnInit will get called automatically.
+// When a component is constructed using the TestBed, **ngOnInit** will get called automatically.
 
 During unit testing, components and services should be tested separately. Therefore, when testing a component, the injected
 services should be mocked.
 
+### Testing with a service that hits the backend
+Do not want to use live data from the backend. This needs to be mocked.
 
+~~~
+let serviceStub: any; // The service stub or mock service
+
+// usually done inside beforeEach()
+serviceStub = {
+  getContent: () => of('some message'); // The real object has this method
+};
+
+// The real service has a method called getContent()
+
+TestBed.configureTestingModule({
+  declarations: [ SomeComponent ],
+  providers: [ { provide: MessageService, useValue: serviceStub } ]
+~~~
+When MessageSerivce is requested or injected, use serviceStyb instead. This is indicated by useValue.  
+This tells the testing environment to use the serviceStub instead of the actual live data.
+
+### Questions
+1) What is an angular zone?
 
 
