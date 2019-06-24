@@ -51,7 +51,19 @@ expect(mockHeroService.deleteHero).toHaveBeenCalledWith(HEREOS[2]);
 
 ### TestBed
 
-// create a HeroComponent and return a fixture component. This is just a wrapper around the actual component
+// create a HeroComponent and return a fixture component. This is just a wrapper around the actual component  
+Allows a component and its template to be tested running together.  
+
+The TestBed.configureTestingModule() creates an Angular module for testing purposes. It follows the same structure as an actual Angular module. The declarations section inclues the component that will be tested.
+
+beforeEach(() => {
+  TestBed.configureTestingModule({
+  declarations: [HeroComponent],
+  schemas: [NO_ERRORS_SCHEMA] // tell Angular that for this module, ignore unknown attributes and elements
+  })
+})
+
+// This will create a component fixture which a wrapper for a component for testing.
 fixture = TestBed.createComponent(HeroComponent);
 The debug element is the rendered html.
 
