@@ -21,4 +21,8 @@ They are to manage and organize their own work. They perform story breakdown. St
 The product backlog is an ordered list of all the features needed for the product. This list is constantly evolving and is never completed. The items in the list need to be prioritized.
 
 ### The Sprint
-The Sprint is the time period in which development tasks are completed
+The Sprint is the time period in which development tasks are completed. Here is the sprint breakdown:
+  1. Sprint Planning - The team decides what to work on for the current sprint.
+  2. Daily Scrum - The team meets together to discuss the progress being made or problems encountered.
+  3. Sprint Review - The team discusses what was completed during the sprint and reviews the backlog.
+  4. Sprint Retrospective - The team discusses what went well, what went wrong and how to improve.
