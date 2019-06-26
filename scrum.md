@@ -1,4 +1,8 @@
 
+---
+layout: post
+title: Blogging Like a Hacker
+---
 # Scrum Notes
 Scrum is a framework within which teams can collaborate to develope high-quality products effectively and efficiently of high value.  
 
