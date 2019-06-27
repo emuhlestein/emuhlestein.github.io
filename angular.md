@@ -26,6 +26,46 @@ Angular has a dependency injection registry. Any thing that is injectable is reg
 
 ### Angular Unit Tests
 
+The basic unit test is 'descibe'. This method takes 2 parameters. The first parameter is a string that is the name of the component being tested. The second parameter is a callback function that actually runs the test. This is usually implemented as an arrow function.
+
+```
+// This is a simple unit test that does nothing
+describe('SimpleComponent', () => {
+});
+```
+The next thing to do is to declare some variables that will be used during the test.
+```
+// This is a simple unit test that does nothing
+describe('SimpleComponent', () => {
+  let component: SimpleComponent;
+  let fixture: ComponentFixture<SimpleComponent>;
+  let de: DebugElement;
+});
+```
+The component is the component that is being tested. The fixture is the testing harness. It contains utilties for testing and it also contains the component. The DebugElement gives us access t othe component's template.
+
+## TestBed
+
+The next thing that needs to setup is the TestBed. The TestBed is the main utility for testing angular components. In order to test, an angular module must be created. This is done using the TestBed.configureTestingModule() method. The argument to this method is an object literal that has values similar to NgModule:
+
+```js
+{
+  imports: [],
+  declarations: [],
+  providers: [],
+  // etc...
+}
+```
+As is the case with NgModule, these items are arrays of elements.
+
+Here is an example for testing SimpleComponent:
+```
+TestBed.configureTestingModule({
+  declarations: [ SimpleComponent ]
+}).compileComponents();
+```
+This creates an testing module and caueses the test component, SomeComponent, to be compiled.
+To get access to the component, the fixture must be retrieved. The fixture is the test environment for the component.
 
 
 #### Creating mock object with three methods
@@ -57,27 +97,9 @@ expect(mockHeroService.deleteHero).toHaveBeenCalledWith(HEREOS[2]);
 2) ng test --source-map=false // not always recommended
 
 
-### TestBed
 
-TestBed is the main utility for testing angular components. In order to test, an angular module must be created. This is done using the TestBed.configureTestingModule() method. The argument to this method is an object that has values similar to NgModule:
 
-```js
-{
-  imports: [],
-  declarations: [],
-  providers: []
-}
-```
-As is the case with NgModule, these items are arrays of elements.
 
-Here is an example for testing a simple component:
-```
-TestBed.configureTestingModule({
-  declarations: [ SomeComponent ]
-}).compileComponents();
-```
-This creates an testing module and caueses the test component, SomeComponent, to be compiled.
-To get access to the component, the fixture must be retrieved. The fixture is the test environment for the component.
 
 ```
 let component: SomeComponent;
