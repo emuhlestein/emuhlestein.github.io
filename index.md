@@ -106,7 +106,7 @@ expect(fixture.nativeElement.querySelector('a').textContent).toContain('SuperDud
 
 expect(de.query(By.css('h1)).nativeElement.innerText).toBe('The String');
 
-~~~~
+{% highlight ruby linenos %}
 // To test the value of a boolean: hideContent
 it('should toggle', () => {
   expect(component.hideContent).toBeTruthy();
@@ -121,7 +121,7 @@ it('should toggle', fakeAsync(() => {
   tick(500); // delay of 500ms
   expect(component.hideContent).toBeFalsy();
 }));
-~~~~
+{% endhighlight %}
 
 fakeAsync() Create a fake angular zone that we can use to test asynchronous activity.
 // nativeElement exposes the DOM API.
