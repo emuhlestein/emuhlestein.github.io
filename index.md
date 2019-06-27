@@ -66,6 +66,35 @@ expect(mockHeroService.deleteHero).toHaveBeenCalledWith(HEREOS[2]);
 
 ### TestBed
 
+TestBed is the main utility for testing angular components. In order to test, an angular module must be created. This is done using the TestBed.configureTestingModule() method. The argument to this method is an object that has values similar to NgModule:
+
+```js
+{
+  imports: [],
+  declarations: [],
+  providers: []
+}
+```
+As is the case with NgModule, these items are arrays of elements.
+
+Here is an example for testing a simple component:
+```
+TestBed.configureTestingModule({
+  declarations: [ SomeComponent ]
+}).compileComponents();
+```
+This creates an testing module and caueses the test component, SomeComponent, to be compiled.
+To get access to the component, the fixture must be retrieved. The fixture is the test environment for the component.
+
+```
+let component: SomeComponent;
+let fixture: ComponentFixture<SomeComponent>;
+...
+fixture = TestBed.createComponent(SomeComponent);
+component = fixture.componentInstance;
+```
+
+
 // create a HeroComponent and return a fixture component. This is just a wrapper around the actual component  
 Allows a component and its template to be tested running together.  
 
