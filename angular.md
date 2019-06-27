@@ -24,29 +24,49 @@ The bootstrap component tells the compiler that this is the entry point for the 
 
 Angular has a dependency injection registry. Any thing that is injectable is registered here.
 
-### Angular Unit Tests
+### Unit Tests
 
-The basic unit test is 'descibe'. This method takes 2 parameters. The first parameter is a string that is the name of the component being tested. The second parameter is a callback function that actually runs the test. This is usually implemented as an arrow function.
+Unit tests are written in Jasmine and run in Karma.
+
+The descibe function runs a suite of tests or specs. The it function runs a single test or spec. Each of these functions, describe and it, take 2 parameters. The first parameter is a description of the test being executed. The second parameter is a callback function or the spec definition that actually runs the test. This is usually implemented as an arrow function.
+
+The first parameter of the descibe function is usually the name of the class being tested. The first parameter of the it function is a "should" statement: "should be created", "should be truthy", and so forth. When the tests are execute the description in the describe function and the description in the it function are concatenated together and displayed to the console.
 
 ```
-// This is a simple unit test that does nothing
+// Here is a simple unit test
 describe('SimpleComponent', () => {
+  let a;
+  
+  it('should be true', () => {
+    a = true;
+    expect(a).toBe(true);
+  });
 });
 ```
-The next thing to do is to declare some variables that will be used during the test.
+
+When this test runs, the output is: "SimpleComponent should be true".
+
+There can be one or more it specs in a given describe test suite.
+
+To setup a unit test, first define a describe function in a file that ends in spec.ts.
+
+In the describe function, some variables that will be used during the test are declared:
 ```
-// This is a simple unit test that does nothing
 describe('SimpleComponent', () => {
   let component: SimpleComponent;
   let fixture: ComponentFixture<SimpleComponent>;
   let de: DebugElement;
 });
 ```
-The component is the component that is being tested. The fixture is the testing harness. It contains utilties for testing and it also contains the component. The DebugElement gives us access t othe component's template.
+The component is the component that is being tested. The fixture is the testing harness. It contains utilties for testing and it also contains the component. The DebugElement gives us access to the component's template.
 
-## TestBed
+To disable a test, prefix the it or describe function with 'x'. For example: 'xit' or 'xdescribe'.
 
-The next thing that needs to setup is the TestBed. The TestBed is the main utility for testing angular components. In order to test, an angular module must be created. This is done using the TestBed.configureTestingModule() method. The argument to this method is an object literal that has values similar to NgModule:
+#### TestBed
+
+TestBed is the primary utility for testing Angular applications. It is a part of Angular. TestBed configures the testing environment.
+
+In order to test, an angular module must be created. This is done using the TestBed.configureTestingModule() method. The argument to this method is an object literal that has values similar to NgModule:
 
 ```js
 {
@@ -56,7 +76,7 @@ The next thing that needs to setup is the TestBed. The TestBed is the main utili
   // etc...
 }
 ```
-As is the case with NgModule, these items are arrays of elements.
+As is the case with NgModule, these items are arrays of elements. Not all of these items are needed for every test.
 
 Here is an example for testing SimpleComponent:
 ```
@@ -64,8 +84,46 @@ TestBed.configureTestingModule({
   declarations: [ SimpleComponent ]
 }).compileComponents();
 ```
-This creates an testing module and caueses the test component, SomeComponent, to be compiled.
+This creates an testing module and causes the test component, SomeComponent, to be compiled.
 To get access to the component, the fixture must be retrieved. The fixture is the test environment for the component.
+
+To get a reference to the component, first grab the fixture, then grab the component.
+```
+fixture = TestBed.createComponent( SimpleComponent );
+component = fixture.componentInstance;
+```
+
+Sometimes the debugELement is needed:
+
+```
+de = fixture.debugElement;
+```
+
+All of this setup needs to happen before each test spec is run. Here is how to do that:
+
+```
+describe('SimpleComponent', () => {
+  let component: SimpleComponent;
+  let fixture: ComponentFixture<SimpleComponent>;
+  let de: DebugElement;
+  
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [ SimpleComponent ]
+    }).compileComponents();
+    
+    fixture = TestBed.createComponent(SchemeComponent);
+    component = fixture.componentInstance;
+    de = fixture.debugElement;
+  });
+  
+  // first test to see if component was created
+  it('should create component', () => {
+     expect(component).toBeTruthy();
+  });
+});
+```
+
 
 
 #### Creating mock object with three methods
