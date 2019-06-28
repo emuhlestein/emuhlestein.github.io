@@ -62,17 +62,23 @@ The component is the component that is being tested. The fixture is the testing 
 
 To disable a test, prefix the it or describe function with 'x'. For example: 'xit' or 'xdescribe'.
 
+### Isolated Unit Tests
+
+This type of testing is the most basic. It tests code in isolation, that is, the code is tested as plain java script code. All of the angular annotations are ignored.
+
+### Integration Tests
+
 #### TestBed
 
-TestBed is the primary utility for testing Angular applications. It is a part of Angular. TestBed configures the testing environment.
+TestBed is the primary utility for testing Angular applications. It is a part of Angular. This allows the component and template running together. TestBed configures the testing environment.
 
-In order to test, an angular module must be created. This is done using the TestBed.configureTestingModule() method. The argument to this method is an object literal that has values similar to NgModule:
+Many tests require the creation of an angular module in order to run the test. This is done by using the TestBed.configureTestingModule() method. The argument to this method is a single object. This is usually an object literal that has the same layout as the NgModule:
 
 ```js
 {
-  imports: [],
-  declarations: [],
-  providers: [],
+  imports: [...],
+  declarations: [...],
+  providers: [...],
   // etc...
 }
 ```
