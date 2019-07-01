@@ -1,3 +1,7 @@
 theme: jekyll-theme-merlot
 title: Ed's Learning Blog
 description: This is where I share what I am learning
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
