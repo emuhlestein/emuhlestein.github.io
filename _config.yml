@@ -1,7 +1,10 @@
-theme: jekyll-theme-merlot
+# basic options
 title: Ed's Learning Blog
+author: emuhlestein
+email: emuhlestein@yahoo.com
 description: This is where I share what I am learning
 plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
+theme: minima
