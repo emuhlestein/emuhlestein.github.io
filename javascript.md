@@ -1,3 +1,7 @@
+---
+layout: page
+title: Javascript
+---
 #### Arrow Function
 Both of these statements do the same thing.
 ~~~
