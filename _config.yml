@@ -9,6 +9,9 @@ plugins:
   - jekyll-seo-tag
 
 header_pages:
+  - scrum.md
+  - javascript.md
+  - angular.md
   - about.md
   
 # Build settings  
