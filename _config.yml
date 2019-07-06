@@ -8,6 +8,8 @@ plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
 
+# If you want to link only specific pages in your header, uncomment
+# this and add the path to the pages in order as they should show up
 header_pages:
   - scrum.md
   - javascript.md
