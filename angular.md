@@ -1,4 +1,8 @@
 
+---
+layout: page
+title: Angular
+---
 ## Angular Notes
 ### Angular Module
 An Angular module is a mechanism for combining components, services, directives and pipes. All the modules together combine to create an Angular application.
