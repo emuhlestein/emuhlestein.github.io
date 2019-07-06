@@ -1,5 +1,5 @@
 ---
 layout: home
-title: This is from index.md
+title: Keep On Learning
 ---
-This is test text.
+We need to keep learning.
