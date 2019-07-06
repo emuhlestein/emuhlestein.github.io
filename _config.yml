@@ -9,4 +9,4 @@ plugins:
   - jekyll-seo-tag
   
 # Build settings  
-theme: jekyll-theme-minimal
+theme: minima
